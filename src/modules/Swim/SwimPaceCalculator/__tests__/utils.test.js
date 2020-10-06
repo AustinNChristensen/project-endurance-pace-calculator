@@ -1,6 +1,26 @@
-import { calcSwimPace, convertSecondsToTime, convertTimeToSeconds } from '../utils';
+import { calcSwimPace, convertSecondsToTime, convertTimeToSeconds, convertTimeToString, parseTime } from '../utils';
 
 describe('SwimUtils', () => {
+    describe('parseTime', () => {
+        test('returns time object when given string', () => {
+            expect(parseTime('01:02:03')).toEqual({
+                hours: 1,
+                minutes: 2,
+                seconds: 3
+            });
+        });
+    });
+
+    describe('convertTimeToString', () => {
+        test('returns string when given time object', () => {
+            expect(convertTimeToString({
+                hours: 2,
+                minutes: 3,
+                seconds: 4
+            })).toEqual('02:03:04');
+        });
+    });
+
     describe('calcSwimPace', () => {
         test('handles 100 yard distance', () => {
             expect(calcSwimPace(

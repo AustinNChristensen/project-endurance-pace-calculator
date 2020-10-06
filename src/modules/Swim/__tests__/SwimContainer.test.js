@@ -10,6 +10,6 @@ describe('SwimContainer', () => {
     test('Renders Swim Pace Calculator Module', () => {
         setupRTL();
 
-        expect(screen.getByRole('heading', { name: 'Pace Calculator' })).toBeInTheDocument();
+        expect(screen.getByRole('heading', { name: 'Swim Pace Calculator' })).toBeInTheDocument();
     });
 });

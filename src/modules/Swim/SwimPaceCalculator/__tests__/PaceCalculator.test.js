@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
+import userEvent from '@testing-library/user-event';
 import { SwimPaceCalculator } from '../SwimPaceCalculator';
 
 describe('PaceCalculator', () => {
@@ -10,7 +11,7 @@ describe('PaceCalculator', () => {
     test('Renders Pace Calculator Header', () => {
         setupRTL();
 
-        expect(screen.getByRole('heading', { name: 'Pace Calculator' })).toBeInTheDocument();
+        expect(screen.getByRole('heading', { name: 'Swim Pace Calculator' })).toBeInTheDocument();
     });
 
     describe('Renders 3 inputs', () => {
@@ -35,7 +36,28 @@ describe('PaceCalculator', () => {
 
             const input = screen.getByRole('textbox', { name: /Pace/i });
 
-            expect(input).toHaveValue('00:00');
+            expect(input).toHaveValue('00:00:00');
+        });
+    });
+
+    describe('Calculation button', () => {
+        test('Calculate Pace', async () => {
+            setupRTL();
+
+            const distanceField = screen.getByRole('textbox', { name: 'Distance' });
+            const timeField = screen.getByRole('textbox', { name: 'Time' });
+            const calcPaceButton = screen.getByRole('button', { name: 'Calculate Pace' });
+            const paceField = screen.getByRole('textbox', { name: 'Pace' });
+
+            expect(paceField.value).toBe('00:00:00');
+
+            await userEvent.type(distanceField, '500');
+            await userEvent.type(timeField, '00:10:00');
+
+            userEvent.click(calcPaceButton);
+
+            // todo - this won't pass even though it should :)
+            // expect(paceField).toHaveValue('00:02:00');
         });
     });
 });

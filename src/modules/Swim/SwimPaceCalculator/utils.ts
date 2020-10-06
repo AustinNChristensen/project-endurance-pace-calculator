@@ -4,6 +4,28 @@ interface ITime {
     seconds: number;
 }
 
+export const parseTime = (input: string): ITime => {
+    const time = input.split(':');
+
+    if (time.length === 3) {
+        return {
+            hours: Number(time[0]),
+            minutes: Number(time[1]),
+            seconds: Number(time[2])
+        };
+    } else {
+        return {
+            hours: 0,
+            minutes: Number(time[0]),
+            seconds: Number(time[1])
+        };
+    }
+};
+
+export const convertTimeToString = (input: ITime): string => {
+    return `${input.hours > 9 ? input.hours : `0${input.hours}`}:${input.minutes > 9 ? input.minutes : `0${input.minutes}`}:${input.seconds > 9 ? input.seconds : `0${input.seconds}`}`;
+};
+
 export const convertTimeToSeconds = ({ hours, minutes, seconds }: ITime): number => {
     return (hours * 3600) + (minutes * 60) + seconds;
 };

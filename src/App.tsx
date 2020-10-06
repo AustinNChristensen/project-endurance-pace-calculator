@@ -1,9 +1,10 @@
 import React from 'react';
+import { SwimContainer } from './modules/Swim/SwimContainer';
 
 export const App = () => {
-  return (
-    <div className="App">
-      <h1>Swim Pace Calculator</h1>
-    </div>
-  );
-}
+    return (
+        <div className='App'>
+            <SwimContainer />
+        </div>
+    );
+};
