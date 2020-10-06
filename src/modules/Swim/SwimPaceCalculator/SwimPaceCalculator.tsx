@@ -1,6 +1,6 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, ReactElement, useState } from 'react';
 
-export const SwimPaceCalculator = () => {
+export const SwimPaceCalculator = (): ReactElement => {
     const [distance, setDistance] = useState('0');
     const [time, setTime] = useState('00:00:00');
     const [pace, setPace] = useState('00:00');
@@ -12,7 +12,7 @@ export const SwimPaceCalculator = () => {
                 <input
                     type='text'
                     value={distance}
-                    onChange={(e: ChangeEvent<HTMLInputElement>) => setDistance(e.target.value)}
+                    onChange={(e: ChangeEvent<HTMLInputElement>): void => setDistance(e.target.value)}
                 />
             </label>
             <label>
@@ -20,7 +20,7 @@ export const SwimPaceCalculator = () => {
                 <input
                     type='text'
                     value={time}
-                    onChange={(e: ChangeEvent<HTMLInputElement>) => setTime(e.target.value)}
+                    onChange={(e: ChangeEvent<HTMLInputElement>): void => setTime(e.target.value)}
                 />
             </label>
             <label>
@@ -28,7 +28,7 @@ export const SwimPaceCalculator = () => {
                 <input
                     type='text'
                     value={pace}
-                    onChange={(e: ChangeEvent<HTMLInputElement>) => setPace(e.target.value)}
+                    onChange={(e: ChangeEvent<HTMLInputElement>): void => setPace(e.target.value)}
                 />
             </label>
         </div>

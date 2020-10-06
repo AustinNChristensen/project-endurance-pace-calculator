@@ -1,6 +1,6 @@
-import { SwimPaceCalculator } from '../SwimPaceCalculator';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
+import { SwimPaceCalculator } from '../SwimPaceCalculator';
 
 describe('PaceCalculator', () => {
     const setupRTL = () => {
