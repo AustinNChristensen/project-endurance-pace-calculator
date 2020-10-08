@@ -1,4 +1,11 @@
-import { calcSwimPace, convertSecondsToTime, convertTimeToSeconds, convertTimeToString, parseTime } from '../utils';
+import {
+    calcSwimPace,
+    calcTotalSwimTime,
+    convertSecondsToTime,
+    convertTimeToSeconds,
+    convertTimeToString,
+    parseTime
+} from '../utils';
 
 describe('SwimUtils', () => {
     describe('parseTime', () => {
@@ -84,6 +91,53 @@ describe('SwimUtils', () => {
                     seconds: 0
                 }
             );
+        });
+    });
+
+    describe('calcSwimTime', () => {
+        test('handles seconds responses', () => {
+            expect(calcTotalSwimTime({
+                hours: 0,
+                minutes: 0,
+                seconds: 4
+            },
+            100)).toEqual((
+                {
+                    hours: 0,
+                    minutes: 0,
+                    seconds: 4
+                }
+            ));
+        });
+
+        test('handles minutes responses', () => {
+            expect(calcTotalSwimTime({
+                hours: 0,
+                minutes: 2,
+                seconds: 8
+            },
+            1500)).toEqual((
+                {
+                    hours: 0,
+                    minutes: 32,
+                    seconds: 0
+                }
+            ));
+        });
+
+        test('handles hours responses', () => {
+            expect(calcTotalSwimTime({
+                hours: 0,
+                minutes: 2,
+                seconds: 8
+            },
+            4000)).toEqual((
+                {
+                    hours: 1,
+                    minutes: 25,
+                    seconds: 20
+                }
+            ));
         });
     });
 

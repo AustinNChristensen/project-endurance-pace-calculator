@@ -12,6 +12,10 @@ export const SwimPaceCalculator = (): ReactElement => {
         setPace(convertTimeToString(calcSwimPace(parseTime(time), Number(distance))));
     };
 
+    const calculateTotalSwimTime = (): void => {
+        setTime(convertTimeToString(calcTotalSwimTime(parseTime(pace), Number(distance))));
+    };
+
     return (
         <div className={styles.swimPaceContainer}>
             <h1>Swim Pace Calculator</h1>
@@ -41,6 +45,9 @@ export const SwimPaceCalculator = (): ReactElement => {
             </label>
             <button onClick={(): void => calculateSwimPace()}>
                 Calculate Pace
+            </button>
+            <button onClick={(): void => calculateTotalSwimTime()}>
+                Calculate Time
             </button>
         </div>
     );

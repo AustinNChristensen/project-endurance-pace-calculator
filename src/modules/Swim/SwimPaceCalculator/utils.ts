@@ -59,3 +59,11 @@ export const calcSwimPace = (time: ITime, distance: number): ITime => {
 
     return convertSecondsToTime(secondsPerHundred);
 };
+
+export const calcTotalSwimTime = (pace: ITime, distance: number): ITime => {
+    const seconds = convertTimeToSeconds(pace);
+
+    const totalTime = seconds * distance / 100;
+
+    return convertSecondsToTime(totalTime);
+};
