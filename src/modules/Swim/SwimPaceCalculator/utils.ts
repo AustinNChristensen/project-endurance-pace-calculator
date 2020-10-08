@@ -52,7 +52,7 @@ export const convertSecondsToTime = (secondsInput: number): ITime => {
     };
 };
 
-export const calcSwimPace = (time: ITime, distance: number): ITime => {
+export const calcAverageSwimPace = (time: ITime, distance: number): ITime => {
     const seconds = convertTimeToSeconds(time);
 
     const secondsPerHundred = seconds / distance * 100;
@@ -66,4 +66,12 @@ export const calcTotalSwimTime = (pace: ITime, distance: number): ITime => {
     const totalTime = seconds * distance / 100;
 
     return convertSecondsToTime(totalTime);
+};
+
+export const calcTotalSwimDistance = (time: ITime, pace: ITime): string => {
+    const timeInSeconds = convertTimeToSeconds(time);
+    const paceInSeconds = convertTimeToSeconds(pace);
+
+    return (Math.floor(timeInSeconds / paceInSeconds * 100)).toString();
+    return '0';
 };

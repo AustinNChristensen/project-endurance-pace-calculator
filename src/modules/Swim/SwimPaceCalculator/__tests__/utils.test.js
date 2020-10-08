@@ -1,5 +1,5 @@
 import {
-    calcSwimPace,
+    calcAverageSwimPace, calcTotalSwimDistance,
     calcTotalSwimTime,
     convertSecondsToTime,
     convertTimeToSeconds,
@@ -30,7 +30,7 @@ describe('SwimUtils', () => {
 
     describe('calcSwimPace', () => {
         test('handles 100 yard distance', () => {
-            expect(calcSwimPace(
+            expect(calcAverageSwimPace(
                 {
                     hours: 0,
                     minutes: 1,
@@ -46,7 +46,7 @@ describe('SwimUtils', () => {
         });
 
         test('handles 500 yard distance', () => {
-            expect(calcSwimPace(
+            expect(calcAverageSwimPace(
                 {
                     hours: 0,
                     minutes: 10,
@@ -62,7 +62,7 @@ describe('SwimUtils', () => {
         });
 
         test('handles 1000 yard distance', () => {
-            expect(calcSwimPace(
+            expect(calcAverageSwimPace(
                 {
                     hours: 0,
                     minutes: 8,
@@ -78,7 +78,7 @@ describe('SwimUtils', () => {
         });
 
         test('handles 2000 yard distance', () => {
-            expect(calcSwimPace(
+            expect(calcAverageSwimPace(
                 {
                     hours: 1,
                     minutes: 0,
@@ -138,6 +138,53 @@ describe('SwimUtils', () => {
                     seconds: 20
                 }
             ));
+        });
+    });
+
+    describe('calcSwimDistance', () => {
+        test('Handles less than 100', () => {
+            expect(calcTotalSwimDistance(
+                {
+                    hours: 0,
+                    minutes: 0,
+                    seconds: 45
+                },
+                {
+                    hours: 0,
+                    minutes: 1,
+                    seconds: 30
+                }
+            )).toEqual('50');
+        });
+
+        test('Handles less than 1000', () => {
+            expect(calcTotalSwimDistance(
+                {
+                    hours: 0,
+                    minutes: 10,
+                    seconds: 0
+                },
+                {
+                    hours: 0,
+                    minutes: 1,
+                    seconds: 58
+                }
+            )).toEqual('508');
+        });
+
+        test('Handles less than 100000', () => {
+            expect(calcTotalSwimDistance(
+                {
+                    hours: 1,
+                    minutes: 15,
+                    seconds: 30
+                },
+                {
+                    hours: 0,
+                    minutes: 1,
+                    seconds: 58
+                }
+            )).toEqual('3838');
         });
     });
 

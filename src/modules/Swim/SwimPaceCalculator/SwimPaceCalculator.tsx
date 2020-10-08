@@ -1,7 +1,7 @@
 import React, { ChangeEvent, ReactElement, useState } from 'react';
 import TimeField from 'react-simple-timefield';
 import styles from './SwimPaceCalculator.module.scss';
-import { calcSwimPace, convertTimeToString, parseTime } from './utils';
+import { calcAverageSwimPace, calcTotalSwimDistance, calcTotalSwimTime, convertTimeToString, parseTime } from './utils';
 
 export const SwimPaceCalculator = (): ReactElement => {
     const [distance, setDistance] = useState('0');
@@ -9,11 +9,15 @@ export const SwimPaceCalculator = (): ReactElement => {
     const [pace, setPace] = useState('00:00:00');
 
     const calculateSwimPace = (): void => {
-        setPace(convertTimeToString(calcSwimPace(parseTime(time), Number(distance))));
+        setPace(convertTimeToString(calcAverageSwimPace(parseTime(time), Number(distance))));
     };
 
     const calculateTotalSwimTime = (): void => {
         setTime(convertTimeToString(calcTotalSwimTime(parseTime(pace), Number(distance))));
+    };
+
+    const calculateTotalSwimDistance = (): void => {
+        setDistance(calcTotalSwimDistance(parseTime(time), parseTime(pace)));
     };
 
     return (
@@ -48,6 +52,9 @@ export const SwimPaceCalculator = (): ReactElement => {
             </button>
             <button onClick={(): void => calculateTotalSwimTime()}>
                 Calculate Time
+            </button>
+            <button onClick={(): void => calculateTotalSwimDistance()}>
+                Calculate Distance
             </button>
         </div>
     );
