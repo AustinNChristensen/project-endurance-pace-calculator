@@ -73,5 +73,4 @@ export const calcTotalSwimDistance = (time: ITime, pace: ITime): string => {
     const paceInSeconds = convertTimeToSeconds(pace);
 
     return (Math.floor(timeInSeconds / paceInSeconds * 100)).toString();
-    return '0';
 };
